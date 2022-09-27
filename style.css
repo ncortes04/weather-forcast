@@ -21,6 +21,5 @@ span{
     font-size: 1em;
 }
 li:hover{
-    background-color: lightslategray;
-    text-decoration: underline;
+    background-color: rgb(114, 124, 134);
 }
