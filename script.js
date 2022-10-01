@@ -4,7 +4,7 @@ var city="";
 var classes = ['0', '1', '2', '3', '4']
 
 var inputEl = document.getElementById("city-name");
-
+var citiesArr = []
 var searchButton = document.getElementById('search-button');
 var clearButton = document.getElementById('searchClear');
 var currentCity = document.getElementById('cityCurrent');
@@ -25,6 +25,7 @@ function displayWeather(e){
     var city = inputEl.value
     createPastSearchBtn(city)
     getWeather(city)
+    setItems()
 }
 
 
@@ -100,15 +101,28 @@ function createPastSearchBtn(city) {
     pastSearchBtn.classList.add('btn', 'button', 'btn-primary', 'mt-2', 'search-button');
     searchHistoryEl.append(pastSearchBtn);
     pastSearchBtn.addEventListener('click', searchHandlerPast);
+    citiesArr.push(city)
+    console.log(citiesArr)
   }
-  
-// Handles the search input from buttons created from previous searches
-function searchHandlerPast(event) {
+  function searchHandlerPast(event) {
     city = event.target.textContent;
     getWeather(city);
   }
-  
+  function setItems(event){
+    localStorage.setItem('Cities', JSON.stringify(citiesArr));
+};
+var stored = JSON.parse(localStorage.getItem("Cities"));
+    
+function  renderLastRegistered(){
+    for(let i=0; i <stored.length;  i++){
+        city = stored[i]
+        createPastSearchBtn(city)
+    }
  
+}
+
+renderLastRegistered()
+
 searchButton.addEventListener("click", displayWeather);
 
 //$(window).on("load",getcitylast);
