@@ -11,7 +11,8 @@ var currentCity = document.getElementById('cityCurrent');
 var currentTemperature = document.getElementById("temperature");
 var currentHumidty= document.getElementById("humidity");
 var currentWSpeed= document.getElementById('windSpeed');
-var searchHistoryEl = document.querySelector('#history-list');
+var searchHistoryEl = document.getElementById('history-list');
+var clearHistory = document.getElementById('clearHistory')
 var today = moment();
 
 var cityStore=[];
@@ -101,7 +102,9 @@ function createPastSearchBtn(city) {
     pastSearchBtn.classList.add('btn', 'button', 'btn-primary', 'mt-2', 'search-button');
     searchHistoryEl.append(pastSearchBtn);
     pastSearchBtn.addEventListener('click', searchHandlerPast);
+   if(inputEl.value !== ''){
     citiesArr.push(city)
+   }
     console.log(citiesArr)
   }
   function searchHandlerPast(event) {
@@ -112,17 +115,23 @@ function createPastSearchBtn(city) {
     localStorage.setItem('Cities', JSON.stringify(citiesArr));
 };
 var stored = JSON.parse(localStorage.getItem("Cities"));
-    
+
 function  renderLastRegistered(){
     for(let i=0; i <stored.length;  i++){
         city = stored[i]
+        citiesArr.push(city)
         createPastSearchBtn(city)
     }
  
 }
 
-renderLastRegistered()
-
+if(stored !== null){
+    renderLastRegistered()
+}
+function removoveCities(){
+localStorage.removeItem("Cities")
+}
+clearHistory.addEventListener("click", removoveCities)
 searchButton.addEventListener("click", displayWeather);
 
 //$(window).on("load",getcitylast);
