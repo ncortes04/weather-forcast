@@ -23,3 +23,21 @@ span{
 li:hover{
     background-color: rgb(110, 124, 134);
 }
+.image{
+    width: 40px;
+    height: 40px;
+}
+.search-button {
+    width:100%;
+    margin-top: 5px;
+}
+#header{
+    background-image: linear-gradient(to right, rgb(6, 101, 165) , rgb(99, 47, 196));
+    color: white;
+}
+#header h1 {
+    text-align: start;
+}
+#cityCurrent{
+    font-size: 20px;
+}
