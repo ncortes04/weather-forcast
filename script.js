@@ -1,8 +1,7 @@
 /* variable for search */
-var city="";
-
 var classes = ['0', '1', '2', '3', '4']
 
+/* gets elements by ID */
 var inputEl = document.getElementById("city-name");
 var citiesArr = []
 var searchButton = document.getElementById('search-button');
@@ -54,6 +53,7 @@ function getWeather(city){
 function forecast(cityid) {
     fetch("https://api.openweathermap.org/data/2.5/forecast?id="+cityid+"&appid="+ APIKey)
       .then(response => response.json())
+     //grabs rtesponse as data and used as a parameter in function
       .then(function (data) {
             console.log(data)
             for(i=0; i < 5; i++){
